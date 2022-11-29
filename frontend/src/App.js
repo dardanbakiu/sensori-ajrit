@@ -1,7 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect } from "react";
+import axios from "./axiosinstance";
 
 function App() {
+  useEffect(() => {
+    axios.get("/test").then((data) => {
+      console.log("ktu i kena disa te dhena : ", data);
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
