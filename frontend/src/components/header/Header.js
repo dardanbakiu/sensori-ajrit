@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className='header'>
         <div className='title'>
-          <h2>Universiteti i Prishtines</h2>
+          <h1>Universiteti i Prishtines</h1>
           <h1>Kualiteti i Ajrit</h1>
         </div>
 

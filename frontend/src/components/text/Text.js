@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Text = ({weight, size, position, color, content='Sample Text'}) => {
+const Text = ({weight, size, position, color, padding, content='Sample Text'}) => {
   const [modifiedPosition, setModifiedPosition] = useState('');
   useEffect(() => {
     if(position === 'left') {
@@ -20,10 +20,11 @@ const Text = ({weight, size, position, color, content='Sample Text'}) => {
     <div className=''>
         <p style={{
           color: color ? color : 'white',
-          size: size ? size : '16px',
+          fontSize: size ? size : '16px',
           fontWeight: weight ? weight : 100,
           display: 'flex',
-          justifyContent: position ? modifiedPosition : 'center'
+          justifyContent: position ? modifiedPosition : 'center',
+          padding: padding ? padding : '0px',
         }}>
           
           {content}
