@@ -15,7 +15,7 @@ const Home = () => {
       />
 
       <Box>
-        <p>hello world</p>
+        <p>Testing this oen</p>
       </Box>
     </div>
   );

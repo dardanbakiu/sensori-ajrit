@@ -5,8 +5,9 @@ const Box = ({children, background='white'}) => {
   return (
     <div 
     style={{
-      backgroundColor: background,
+      backgroundColor: 'red',
       color:'red'
+
     }}
     >
        {children}
