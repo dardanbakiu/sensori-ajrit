@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from 'react';
-// import './box.scss'
+import React from 'react';
 
-const Box = ({children, background='white', w, h, position="center"}) => {
-  const [modifiedPosition, setModifiedPosition] = useState('');
-  useEffect(() => {
-    if(position === 'left') {
-      setModifiedPosition('flex-start')
-    }
+const Box = ({constant, 
+        background='black', w, h}) => {
 
-    if(position === 'right') {
-      setModifiedPosition('flex-end')
-    }
+  // const [modifiedPosition, setModifiedPosition] = useState('');
+  // useEffect(() => {
+  //   if(position === 'left') {
+  //     setModifiedPosition('flex-start')
+  //   }
 
-    if(position === 'center') {
-      setModifiedPosition('center')
-    }
-  }, [position])
+  //   if(position === 'right') {
+  //     setModifiedPosition('flex-end')
+  //   }
+
+  //   if(position === 'center') {
+  //     setModifiedPosition('center')
+  //   }
+  // }, [position])
   return (
     <div 
       style={{
         display: 'flex',
-        justifyContent: modifiedPosition
+        // justifyContent: modifiedPosition,
       }}
     >
       <div className='box-body'
@@ -28,10 +29,15 @@ const Box = ({children, background='white', w, h, position="center"}) => {
           backgroundColor: background ? background : 'black',
           width: w ? w : 'default',
           height: h ? h : 'default',
-          color: 'white'
+          borderRadius: '30px',
+          padding: '20px 20px'
         }}
       >
-        {children}
+        
+        <div style={{
+          display: 'flex'
+        }}>
+        </div>
       </div>
     </div>
   );

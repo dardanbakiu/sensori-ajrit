@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
+$pink: #c6538c;
+$green: #57bf9c;
+$purple: #c09ff8;
+$yellow: #f9d26a;
+
 body {
   margin: 0;
   font-family: 'Montserrat';
@@ -12,9 +17,9 @@ code {
     monospace;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
-  color:white;
-  background-color:black;
+  // color:white;
+  // background-color:black;
 }

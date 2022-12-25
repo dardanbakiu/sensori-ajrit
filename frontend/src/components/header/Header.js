@@ -11,8 +11,8 @@ const Header = () => {
 
         <img 
           className='logo'
-          // src='https://upload.wikimedia.org/wikipedia/commons/e/e1/University_of_Prishtina_logo.svg' 
-          src='https://alchetron.com/cdn/universiteti-i-prishtins-c1a59abe-73d0-4aee-9035-088397153d7-resize-750.jpg'
+          src='https://upload.wikimedia.org/wikipedia/commons/e/e1/University_of_Prishtina_logo.svg' 
+          // src='https://alchetron.com/cdn/universiteti-i-prishtins-c1a59abe-73d0-4aee-9035-088397153d7-resize-750.jpg'
           alt='uni' 
         />
     </div>

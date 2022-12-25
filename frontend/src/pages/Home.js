@@ -14,8 +14,8 @@ const Home = () => {
         content='Rezultati i Performancës së Ndotjes'
       />
 
-      <Box background='red' h="100px" position="center">
-        <Text background='red' />
+      <Box background='#57bf9c'>
+        <Text color="black" weight='800'/>  
       </Box>
     </div>
   );
