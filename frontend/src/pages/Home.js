@@ -14,8 +14,8 @@ const Home = () => {
         content='Rezultati i Performancës së Ndotjes'
       />
 
-      <Box>
-        <p>Testing this oen</p>
+      <Box background='' w='100px' h='100px'>
+        <Text content='Hello World'/>
       </Box>
     </div>
   );
