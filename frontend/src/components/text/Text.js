@@ -17,7 +17,9 @@ const Text = ({weight, size, position, color, padding, content='Sample Text'}) =
   }, [position])
 
   return (
-    <div className=''>
+    <div style={{
+      backgroundColor: 'inherit'
+    }}>
         <p style={{
           color: color ? color : 'white',
           fontSize: size ? size : '16px',
@@ -25,6 +27,7 @@ const Text = ({weight, size, position, color, padding, content='Sample Text'}) =
           display: 'flex',
           justifyContent: position ? modifiedPosition : 'center',
           padding: padding ? padding : '0px',
+          backgroundColor: 'inherit'
         }}>
           
           {content}

@@ -1607,6 +1607,11 @@ raw-body@2.5.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+react-containers@^16.0.5:
+  version "16.0.5"
+  resolved "https://registry.yarnpkg.com/react-containers/-/react-containers-16.0.5.tgz#ecfcc4f4e8126b3988ded2524a2f107b66d02bfc"
+  integrity sha512-P9bRsPAIK5AHDURQDZ6Xn8X/I2ZG+EFSZv4dj0CsE2WZiholS2l86oaXr8mTaAkEz/zGnATH9aWA68kNDq3nOA==
+
 react-router-dom@^6.5.0:
   version "6.6.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.6.1.tgz#1b96ec0b2cefa7319f1251383ea5b41295ee260d"
