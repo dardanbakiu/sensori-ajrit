@@ -3,25 +3,10 @@ import React from 'react';
 const Box = ({constant, 
         background='black', w, h}) => {
 
-  // const [modifiedPosition, setModifiedPosition] = useState('');
-  // useEffect(() => {
-  //   if(position === 'left') {
-  //     setModifiedPosition('flex-start')
-  //   }
-
-  //   if(position === 'right') {
-  //     setModifiedPosition('flex-end')
-  //   }
-
-  //   if(position === 'center') {
-  //     setModifiedPosition('center')
-  //   }
-  // }, [position])
   return (
     <div 
       style={{
         display: 'flex',
-        // justifyContent: modifiedPosition,
       }}
     >
       <div className='box-body'

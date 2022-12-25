@@ -21,7 +21,7 @@ const Text = ({weight, size, position, color, padding, content='Sample Text'}) =
       backgroundColor: 'inherit'
     }}>
         <p style={{
-          color: color ? color : 'black',
+          color: color ? color : 'white',
           fontSize: size ? size : '16px',
           fontWeight: weight ? weight : 100,
           display: 'flex',
