@@ -952,15 +952,78 @@ const day = (entry) => {
   return d;
 }
 
-const modified = [];
+const daily = [];
 const data = [...qualityHistory.data, ...qualityHistory.data, ...qualityHistory.data];
+
+const checkGraphName = (currentQuality) => {
+  if(currentQuality >= 0 && currentQuality <= 50) {
+    return 'Good'
+  }
+
+  if(currentQuality >= 51 && currentQuality <= 100) {
+    return 'Moderate'
+  }
+
+  if(currentQuality >= 101 && currentQuality <= 150) {
+    return 'Unhealthy for Sensitive Groups'
+  }
+
+  if(currentQuality >= 151 && currentQuality <= 200) {
+    return 'Unhealthy'
+  }
+
+  if(currentQuality >= 201 && currentQuality <= 300) {
+    return 'Very Unhealthy'
+  }
+
+  if(currentQuality > 300) {
+    return 'Hazardous'
+  }
+}
 
 for (let i = 0; i < data.length; i++) {
   let d = day(i)
   d = (d.toISOString().slice(0,10))
   const object = data[i];
   object.day = d;
-  modified.push(object)
+  object.qualityName = checkGraphName(object.aqi)
+  daily.push(object)
 }
 
-module.exports = modified;
+let groupBy = (array, key) => {
+  return array.reduce((result, obj) => {
+     (result[obj[key]] = result[obj[key]] || []).push(obj);
+     return result;
+  }, {});
+};
+
+const grouped = groupBy(daily, 'qualityName')
+const groups = Object.keys(grouped)
+const chartDataArr = []
+
+for (let i = 0; i < groups.length; i++) {
+  let group = groups[i];
+  console.log(group)
+  console.log( grouped[groups[i]].length);
+  
+  const tempObj = {
+    "name": groups[i],
+  }
+
+  let dataObj = {}
+  
+  for (let j = 0; j < grouped[groups[i]].length; j++) {
+    // console.log(grouped[groups[i]][j])
+    dataObj[grouped[groups[i]][j].day] = grouped[groups[i]][j].aqi
+  }
+
+  tempObj['data'] = dataObj
+
+  chartDataArr.push(tempObj)
+}
+
+
+module.exports = {
+  daily,
+  chartDataArr
+};

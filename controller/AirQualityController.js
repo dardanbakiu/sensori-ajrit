@@ -1,15 +1,13 @@
 const axios = require("axios");
-const daily = require('./DaysAirQuality');
+const {daily, chartDataArr} = require('./DaysAirQuality');
 
 const airQuality = (req, res) => {
   const {time} = req.body
-  console.log('hello world first para return')
+
   if(time === 'daily') {
     res.json(daily);
     return;
   }
-
-  console.log('qetu jena mas reutrnit');
 
   const options = {
     method: 'GET',
@@ -30,7 +28,7 @@ const airQuality = (req, res) => {
 }
 
 const chartData = (req, res) => {
-  res.json({'msg': 'hello'})
+  res.json(chartDataArr)
 }
 
 module.exports = {

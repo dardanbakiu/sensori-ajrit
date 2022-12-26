@@ -16,7 +16,7 @@ const Home = () => {
     axios.get("/chartDailyDate")
     .then(function (response) {
       console.log(response.data);
-      setChartData(response.data)
+      setChartData(response.data);
     })
     .catch(function (error) {
       console.log(error);
@@ -26,7 +26,7 @@ const Home = () => {
   const getDailyData = () => {
     axios.post("/airQuality", {time: 'daily'})
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       setDaily(response.data)
     })
     .catch(function (error) {
@@ -37,7 +37,7 @@ const Home = () => {
   const currentAirQuality = () => {
     axios.post("/airQuality")
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       setCurrentQuality(response.data.overall_aqi)
     })
     .catch(function (error) {
@@ -50,13 +50,7 @@ const Home = () => {
     getChartData()
 
     const data = [
-      {
-        "name":"Workout", 
-        "data": {
-          "2021-01-01": 3,
-          "2021-01-02": 4
-        }
-      },
+      { "name":"Workout", "data": { "2021-01-01": 3}},
 
       {
         "name":"Call parents",
@@ -68,7 +62,7 @@ const Home = () => {
       }
     ];
 
-    setChartData(data)
+    // setChartData(data)
   }, [])
 
   useEffect(() => {
