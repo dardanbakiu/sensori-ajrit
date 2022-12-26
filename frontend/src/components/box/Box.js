@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Box = ({constant, children, 
+const Box = ({constant, children, padding,
         background='black', w, h}) => {
 
   return (
     <div 
       style={{
         display: 'flex',
+        padding: padding ? padding : 0,
       }}
     >
       <div className='box-body'

@@ -19,9 +19,26 @@ const Home = () => {
         display: 'flex',
         justifyContent: 'center',
       }}>
-        <Box background='#57bf9c' w='100%'>
-
-        </Box>
+        <Box background='#a8e05f' w='1000px' h="200px" padding='32px'>
+          <div
+          style={{width:'100%', height:'100%', display: 'flex', justifyContent:'space-between'}}>
+            <div style={{display: 'flex', justifyContent:'center', alignItems: 'center' }}>
+              <div style={{backgroundColor : '#87c13c', width:'130px', height:'150px', borderRadius:'30px', color:'white',
+                  display:'flex', flexDirection:'column', justifyContent: 'space-around', padding: '0 20px'}}>
+                    
+                    <p>FIEK AQ</p>
+                    <p style={{fontWeight:'500', lineHeight:'40px', fontSize:'34px'}}
+                    >40</p>
+              </div>
+              <div style={{color: '#607631', padding: '0 20px', display:'flex',height:'150px', flexDirection:'column', justifyContent: 'space-evenly'}}>
+                <p>LIVE FIEK AQ</p>
+                <p style={{fontSize:'30px'}}
+                >Good</p>
+              </div>
+            </div>
+            <div> <img src='https://www.iqair.com/assets/aqi/ic-face-green.svg' alt='face'  width={116}/> </div>
+          </div>
+        </Box>  
       </div>
 
       <div style={{display:'flex', justifyContent: 'space-evenly', padding: '20px 0'}}>
