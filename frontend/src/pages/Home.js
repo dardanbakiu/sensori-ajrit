@@ -4,6 +4,8 @@ import Text from '../components/text/Text'
 import Box from '../components/box/Box'
   
 const Home = () => {
+  
+
   return (
     <div>
       <Header />
@@ -14,9 +16,27 @@ const Home = () => {
         content='Rezultati i Performancës së Ndotjes'
       />
 
-      <Box background='#57bf9c'>
-        <Text color="black" weight='800'/>  
-      </Box>
+      <div>
+        <div style={{display:'flex', justifyContent: 'space-evenly', padding: '20px 0'}}>
+          <Box background='#57bf9c'> 
+            <p>hellow rold</p>
+          </Box>
+
+          <Box background='#57bf9c'> 
+            <p>hellow rold</p>
+          </Box>
+        </div>
+
+        <div style={{display:'flex', justifyContent: 'space-evenly', padding: '20px 0'}}>
+          <Box background='#57bf9c'> 
+            <p>hellow rold</p>
+          </Box>
+          <Box background='#57bf9c'> 
+            <p>hellow rold</p>
+          </Box>
+        </div>
+      </div>
+    
     </div>
   );
 };

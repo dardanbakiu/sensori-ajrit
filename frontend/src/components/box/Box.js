@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Box = ({constant, 
+const Box = ({constant, children, 
         background='black', w, h}) => {
 
   return (
@@ -19,10 +19,7 @@ const Box = ({constant,
         }}
       >
         
-        <div style={{
-          display: 'flex'
-        }}>
-        </div>
+        {children}
       </div>
     </div>
   );
