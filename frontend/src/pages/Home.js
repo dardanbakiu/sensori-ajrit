@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/header/Header'
 import Text from '../components/text/Text'
 import Box from '../components/box/Box'
+import { LineChart } from 'react-chartkick'
+import 'chartkick/chart.js'
   
 const Home = () => {
+  const [chartData, setChartData] = useState([{}])
+  
+  useEffect(() => {
+    const data = [
+      {
+        "name":"Workout", 
+        "data": {
+          "2021-01-01": 3,
+          "2021-01-02": 4
+        }
+      },
+
+      {
+        "name":"Call parents",
+        "data": 
+          {
+            "2021-01-01": 5, 
+            "2021-01-02": 3
+          }
+      }
+    ];
+
+    setChartData(data)
+  }, [])
+
   return (
 
     <div>
@@ -111,6 +138,8 @@ const Home = () => {
             </div>
           </Box> 
       </div>
+
+      <LineChart data={chartData} />
     
     </div>
   );

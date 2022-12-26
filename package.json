@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/dardanbakiu/sensori-ajrit#readme",
   "dependencies": {
+    "chart.js": "^4.1.1",
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -26,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^8.0.0",
     "nodemon": "^2.0.20",
+    "react-chartkick": "^0.5.3",
     "react-containers": "^16.0.5",
     "react-router-dom": "^6.5.0",
     "sass": "^1.57.1"
