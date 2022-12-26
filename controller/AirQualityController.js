@@ -34,5 +34,6 @@ const chartData = (req, res) => {
 }
 
 module.exports = {
-  airQuality
+  airQuality,
+  chartData
 };
