@@ -3,10 +3,11 @@ import './header.scss'
 
 const Header = () => {
   return (
-    <div className='header'>
+    <div>
+      <div className='header'>
         <div className='title'>
-          <h1>Universiteti i Prishtines</h1>
-          <h1>Kualiteti i Ajrit</h1>
+          <p>Universiteti i Prishtines</p>
+          <p>Kualiteti i Ajrit</p>
         </div>
 
         <img 
@@ -15,6 +16,16 @@ const Header = () => {
           // src='https://alchetron.com/cdn/universiteti-i-prishtins-c1a59abe-73d0-4aee-9035-088397153d7-resize-750.jpg'
           alt='uni' 
         />
+      </div>
+
+      <hr
+        style={{
+            color: 'green',
+            backgroundColor: 'green',
+            height: 5,
+            margin: '0'
+        }}
+      />
     </div>
   );
 };

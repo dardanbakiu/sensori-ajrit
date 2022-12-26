@@ -6,10 +6,17 @@ $purple: #c09ff8;
 $yellow: #f9d26a;
 
 body {
-  margin: 0;
+  margin: 0 10%;
   font-family: 'Montserrat';
+  background-color:#F0F0F0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+  }
 }
 
 code {
