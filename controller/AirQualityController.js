@@ -30,7 +30,7 @@ const airQuality = (req, res) => {
 }
 
 const chartData = (req, res) => {
-  
+  res.json({'msg': 'hello'})
 }
 
 module.exports = {

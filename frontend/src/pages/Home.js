@@ -12,10 +12,21 @@ const Home = () => {
   const [daily, setDaily] = useState([]);
   const [qualityInWord, setQualityInWord] = useState('Moderate')
 
+  const getChartData = () => {
+    axios.get("/chartDailyDate")
+    .then(function (response) {
+      console.log(response.data);
+      setChartData(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   const getDailyData = () => {
     axios.post("/airQuality", {time: 'daily'})
     .then(function (response) {
-      console.log(response);
+      console.log(response.data);
       setDaily(response.data)
     })
     .catch(function (error) {
@@ -36,6 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     currentAirQuality()
+    getChartData()
 
     const data = [
       {
