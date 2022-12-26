@@ -6,6 +6,6 @@ const {airQuality} = require('./controller/AirQualityController')
 
 router.use("/test", testFunction);
 router.post("/login", login);
-router.get("/airQuality", airQuality);
+router.post("/airQuality", airQuality);
 
 module.exports = router;

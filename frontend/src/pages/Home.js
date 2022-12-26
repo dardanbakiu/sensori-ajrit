@@ -9,16 +9,33 @@ import 'chartkick/chart.js'
 const Home = () => {
   const [chartData, setChartData] = useState([{}])
   const [currentQuality, setCurrentQuality] = useState(72);
+  const [daily, setDaily] = useState([]);
   const [qualityInWord, setQualityInWord] = useState('Moderate')
-  
+
+  const getDailyData = () => {
+    axios.post("/airQuality", {time: 'daily'})
+    .then(function (response) {
+      console.log(response);
+      setDaily(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  const currentAirQuality = () => {
+    axios.post("/airQuality")
+    .then(function (response) {
+      console.log(response.data);
+      setCurrentQuality(response.data.overall_aqi)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   useEffect(() => {
-    // axios.get("/airQuality")
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    currentAirQuality()
 
     const data = [
       {
