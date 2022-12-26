@@ -3,12 +3,23 @@ import Header from '../components/header/Header'
 import Text from '../components/text/Text'
 import Box from '../components/box/Box'
 import { LineChart } from 'react-chartkick'
+import axios from "../axiosinstance";
 import 'chartkick/chart.js'
   
 const Home = () => {
   const [chartData, setChartData] = useState([{}])
+  const [currentQuality, setCurrentQuality] = useState(72);
+  const [qualityInWord, setQualityInWord] = useState('Moderate')
   
   useEffect(() => {
+    // axios.get("/airQuality")
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
     const data = [
       {
         "name":"Workout", 
@@ -30,6 +41,32 @@ const Home = () => {
 
     setChartData(data)
   }, [])
+
+  useEffect(() => {
+    if(currentQuality >= 0 && currentQuality <= 50) {
+      setQualityInWord('Good')
+    }
+
+    if(currentQuality >= 51 && currentQuality <= 100) {
+      setQualityInWord('Moderate')
+    }
+
+    if(currentQuality >= 101 && currentQuality <= 150) {
+      setQualityInWord('Unhealthy for Sensitive Groups')
+    }
+
+    if(currentQuality >= 151 && currentQuality <= 200) {
+      setQualityInWord('Unhealthy')
+    }
+
+    if(currentQuality >= 201 && currentQuality <= 300) {
+      setQualityInWord('Very Unhealthy	')
+    }
+
+    if(currentQuality > 300) {
+      setQualityInWord('Hazardous')
+    }
+  }, [currentQuality])
 
   return (
 
@@ -55,12 +92,12 @@ const Home = () => {
                     
                     <p>FIEK AQ</p>
                     <p style={{fontWeight:'500', lineHeight:'40px', fontSize:'34px'}}
-                    >40</p>
+                    >{currentQuality}</p>
               </div>
               <div style={{color: '#607631', padding: '0 20px', display:'flex',height:'150px', flexDirection:'column', justifyContent: 'space-evenly'}}>
                 <p>LIVE FIEK AQ</p>
                 <p style={{fontSize:'30px'}}
-                >Good</p>
+                >{qualityInWord}</p>
               </div>
             </div>
             <div> <img src='https://www.iqair.com/assets/aqi/ic-face-green.svg' alt='face'  width={116}/> </div>

@@ -7,7 +7,7 @@ import Login from './pages/Login'
 function App() {
   useEffect(() => {
     axios.get("/test").then((data) => {
-      console.log("ktu i kena disa te dhena : ", data);
+      // console.log("ktu i kena disa te dhena : ", data);
     });
   }, []);
 
