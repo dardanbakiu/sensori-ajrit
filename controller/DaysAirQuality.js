@@ -957,6 +957,7 @@ const data = [...qualityHistory.data, ...qualityHistory.data, ...qualityHistory.
 
 for (let i = 0; i < data.length; i++) {
   let d = day(i)
+  d = (d.toISOString().slice(0,10))
   const object = data[i];
   object.day = d;
   modified.push(object)

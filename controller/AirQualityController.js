@@ -29,6 +29,10 @@ const airQuality = (req, res) => {
   });
 }
 
+const chartData = (req, res) => {
+  
+}
+
 module.exports = {
   airQuality
 };
