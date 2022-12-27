@@ -5,6 +5,7 @@ import Box from '../components/box/Box'
 import { LineChart } from 'react-chartkick'
 import axios from "../axiosinstance";
 import 'chartkick/chart.js'
+import {getQualityColor} from '../helper'
   
 const Home = () => {
   const [detailedAQI, setDetailedAQI] = useState({})
@@ -223,7 +224,7 @@ const Home = () => {
       <div style={{margin: '30px 10%', display:'flex', justifyContent:'center'}}>
           <div style={{backgroundColor:'white', width:'100%', height:'500px', borderRadius:'30px', overflowY:'auto'}}>
             {daily.map((el)=>(
-              <div style={{width:'100%', height:'20px', backgroundColor:'lightblue', justifyContent:'space-around',color:'white',padding:'20px 20px', 
+              <div style={{width:'100%', height:'20px', backgroundColor:getQualityColor(el.aqi), justifyContent:'space-around',color:'white',padding:'20px 20px', 
               display:'flex', fontSize:'20px', fontWeight:600}}>
                 <p>{el.day} → </p>
                 <p>AQI : {el.aqi}</p>
