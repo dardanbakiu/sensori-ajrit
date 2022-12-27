@@ -219,6 +219,18 @@ const Home = () => {
       <div style={{margin: '30px 10%'}}>
         <LineChart data={chartData} />
       </div>
+
+      <div style={{margin: '30px 10%', display:'flex', justifyContent:'center'}}>
+          <div style={{backgroundColor:'white', width:'100%', height:'500px', borderRadius:'30px', overflowY:'auto'}}>
+            {daily.map((el)=>(
+              <div style={{width:'100%', height:'20px', backgroundColor:'lightblue', justifyContent:'space-around',color:'white',padding:'20px 20px', 
+              display:'flex', fontSize:'20px'}}>
+                <p>{el.day}</p>
+                <p>AQI : {el.aqi}</p>
+              </div>
+            ))}
+          </div>
+      </div>
     
     </div>
   );
