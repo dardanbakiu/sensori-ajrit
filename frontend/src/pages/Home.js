@@ -165,7 +165,7 @@ const Home = () => {
             </div>
             
             <div style={{margin: '0px', backgroundColor: 'inherit'}}>
-              <Text color="white" weight='800' content='Good' position='center' size='20px'/>
+              <Text color="white" weight='800' content='Very Unhealthy' position='center' size='20px'/>
             </div>
           </Box> 
 
@@ -188,7 +188,7 @@ const Home = () => {
             </div>
             
             <div style={{margin: '0px', backgroundColor: 'inherit'}}>
-              <Text color="white" weight='800' content='Good' position='center' size='20px'/>
+              <Text color="white" weight='800' content='Very Unhealthy' position='center' size='20px'/>
             </div>
           </Box>  
 
@@ -211,12 +211,14 @@ const Home = () => {
             </div>
             
             <div style={{margin: '0px', backgroundColor: 'inherit'}}>
-              <Text color="white" weight='800' content='Good' position='center' size='20px'/>
+              <Text color="white" weight='800' content='Unhealthy' position='center' size='20px'/>
             </div>
           </Box> 
       </div>
-
-      <LineChart data={chartData} />
+      
+      <div style={{margin: '30px 10%'}}>
+        <LineChart data={chartData} />
+      </div>
     
     </div>
   );
