@@ -224,9 +224,11 @@ const Home = () => {
           <div style={{backgroundColor:'white', width:'100%', height:'500px', borderRadius:'30px', overflowY:'auto'}}>
             {daily.map((el)=>(
               <div style={{width:'100%', height:'20px', backgroundColor:'lightblue', justifyContent:'space-around',color:'white',padding:'20px 20px', 
-              display:'flex', fontSize:'20px'}}>
-                <p>{el.day}</p>
+              display:'flex', fontSize:'20px', fontWeight:600}}>
+                <p>{el.day} → </p>
                 <p>AQI : {el.aqi}</p>
+                <p>pm25 : {el.pm25}</p>
+                <p>pm10 : {el.pm10}</p>
               </div>
             ))}
           </div>
