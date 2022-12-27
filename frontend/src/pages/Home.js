@@ -147,7 +147,7 @@ const Home = () => {
       </div>
 
       <div style={{display:'flex', justifyContent: 'space-evenly', padding: '20px 0'}}>
-      <Box background={qualityColor}> 
+      <Box background={getQualityColor(detailedAQI.week)}> 
           <Text color="white" weight='800' content='Jave' position='center'/>
             <div style={{
                 color:'white',
@@ -170,7 +170,7 @@ const Home = () => {
             </div>
           </Box> 
 
-          <Box background={qualityColor}> 
+          <Box background={getQualityColor(detailedAQI.month)}> 
           <Text color="white" weight='800' content='Muaj' position='center'/>
             <div style={{
                 color:'white',
@@ -193,7 +193,7 @@ const Home = () => {
             </div>
           </Box>  
 
-          <Box background={qualityColor}> 
+          <Box background={getQualityColor(detailedAQI.year)}> 
           <Text color="white" weight='800' content='Vit' position='center'/>
             <div style={{
                 color:'white',
@@ -225,7 +225,7 @@ const Home = () => {
           <div style={{backgroundColor:'white', width:'100%', height:'500px', borderRadius:'30px', overflowY:'auto'}}>
             {daily.map((el)=>(
               <div style={{width:'100%', height:'20px', backgroundColor:getQualityColor(el.aqi), justifyContent:'space-around',color:'white',padding:'20px 20px', 
-              display:'flex', fontSize:'20px', fontWeight:600}}>
+              display:'flex', fontSize:'20px', fontWeight:600 }}>
                 <p>{el.day} → </p>
                 <p>AQI : {el.aqi}</p>
                 <p>pm25 : {el.pm25}</p>
