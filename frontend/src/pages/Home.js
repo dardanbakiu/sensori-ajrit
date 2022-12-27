@@ -7,15 +7,29 @@ import axios from "../axiosinstance";
 import 'chartkick/chart.js'
   
 const Home = () => {
+  const [detailedAQI, setDetailedAQI] = useState({})
   const [chartData, setChartData] = useState([{}])
   const [currentQuality, setCurrentQuality] = useState(72);
   const [daily, setDaily] = useState([]);
   const [qualityInWord, setQualityInWord] = useState('Moderate')
+  const [qualityColor, setQualityColor] = useState('#f9d26a')
+
+  function averageAttribute(objects, attribute) {
+    let total = 0;
+    let count = 0;
+    for (const object of objects) {
+      if (object.hasOwnProperty(attribute)) {
+        total += object[attribute];
+        count++;
+      }
+    }
+    return total / count;
+  }
 
   const getChartData = () => {
     axios.get("/chartDailyDate")
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       setChartData(response.data);
     })
     .catch(function (error) {
@@ -26,7 +40,18 @@ const Home = () => {
   const getDailyData = () => {
     axios.post("/airQuality", {time: 'daily'})
     .then(function (response) {
-      // console.log(response.data);
+      console.log(response.data);
+      const obj = {
+        week: 0, 
+        month: 0, 
+        year : 0,
+      }
+      const week = response.data.slice(0,7);
+      obj.week = parseInt(averageAttribute(response.data.slice(0,7), 'aqi'));
+      obj.month = parseInt(averageAttribute(response.data.slice(0,30), 'aqi'));
+      obj.year = parseInt(averageAttribute(response.data.slice(0,365), 'aqi'));
+
+      setDetailedAQI(obj)
       setDaily(response.data)
     })
     .catch(function (error) {
@@ -48,46 +73,38 @@ const Home = () => {
   useEffect(() => {
     currentAirQuality()
     getChartData()
-
-    const data = [
-      { "name":"Workout", "data": { "2021-01-01": 3}},
-
-      {
-        "name":"Call parents",
-        "data": 
-          {
-            "2021-01-01": 5, 
-            "2021-01-02": 3
-          }
-      }
-    ];
-
-    // setChartData(data)
+    getDailyData()
   }, [])
 
   useEffect(() => {
     if(currentQuality >= 0 && currentQuality <= 50) {
       setQualityInWord('Good')
+      setQualityColor('#a8e05f')
     }
 
     if(currentQuality >= 51 && currentQuality <= 100) {
       setQualityInWord('Moderate')
+      setQualityColor('#f9d26a')
     }
 
     if(currentQuality >= 101 && currentQuality <= 150) {
       setQualityInWord('Unhealthy for Sensitive Groups')
+      setQualityColor('#a8e05f')
     }
 
     if(currentQuality >= 151 && currentQuality <= 200) {
       setQualityInWord('Unhealthy')
+      setQualityColor('#c09ff8')
     }
 
     if(currentQuality >= 201 && currentQuality <= 300) {
-      setQualityInWord('Very Unhealthy	')
+      setQualityInWord('Very Unhealthy')
+      setQualityColor('#c6538c')
     }
 
     if(currentQuality > 300) {
       setQualityInWord('Hazardous')
+      setQualityColor('#c6538c')
     }
   }, [currentQuality])
 
@@ -106,7 +123,7 @@ const Home = () => {
         display: 'flex',
         justifyContent: 'center',
       }}>
-        <Box background='#a8e05f' w='1000px' h="200px" padding='32px'>
+        <Box background={qualityColor} w='1000px' h="200px" padding='32px'>
           <div
           style={{width:'100%', height:'100%', display: 'flex', justifyContent:'space-between'}}>
             <div style={{display: 'flex', justifyContent:'center', alignItems: 'center' }}>
@@ -129,8 +146,8 @@ const Home = () => {
       </div>
 
       <div style={{display:'flex', justifyContent: 'space-evenly', padding: '20px 0'}}>
-      <Box background='#c6538c'> 
-          <Text color="white" weight='800' content='Tani' position='center'/>
+      <Box background={qualityColor}> 
+          <Text color="white" weight='800' content='Jave' position='center'/>
             <div style={{
                 color:'white',
                 backgroundColor: 'inherit',
@@ -139,11 +156,11 @@ const Home = () => {
             }}> 
               
               <div style={{margin: '0 5px', backgroundColor: 'inherit'}}>
-                <Text color="white" weight='600' content='56' size='45px'/>
+                <Text color="white" weight='600' content={detailedAQI.week} size='45px'/>
               </div>
 
               <div style={{margin: '0 10px', backgroundColor: 'inherit'}}>
-                <Text color="white" weight='800' content='microgram'/>
+                <Text color="white" weight='800' content='AQI'/>
               </div>
             </div>
             
@@ -152,8 +169,8 @@ const Home = () => {
             </div>
           </Box> 
 
-          <Box background='#c09ff8'> 
-          <Text color="white" weight='800' content='Tani' position='center'/>
+          <Box background={qualityColor}> 
+          <Text color="white" weight='800' content='Muaj' position='center'/>
             <div style={{
                 color:'white',
                 backgroundColor: 'inherit',
@@ -162,11 +179,11 @@ const Home = () => {
             }}> 
               
               <div style={{margin: '0 5px', backgroundColor: 'inherit'}}>
-                <Text color="white" weight='600' content='56' size='45px'/>
+                <Text color="white" weight='600' content={detailedAQI.month} size='45px'/>
               </div>
 
               <div style={{margin: '0 10px', backgroundColor: 'inherit'}}>
-                <Text color="white" weight='800' content='microgram'/>
+                <Text color="white" weight='800' content='AQI'/>
               </div>
             </div>
             
@@ -175,8 +192,8 @@ const Home = () => {
             </div>
           </Box>  
 
-          <Box background='#f9d26a'> 
-          <Text color="white" weight='800' content='Sot' position='center'/>
+          <Box background={qualityColor}> 
+          <Text color="white" weight='800' content='Vit' position='center'/>
             <div style={{
                 color:'white',
                 backgroundColor: 'inherit',
@@ -185,11 +202,11 @@ const Home = () => {
             }}> 
               
               <div style={{margin: '0 5px', backgroundColor: 'inherit'}}>
-                <Text color="white" weight='600' content='56' size='45px'/>
+                <Text color="white" weight='600' content={detailedAQI.year} size='45px'/>
               </div>
 
               <div style={{margin: '0 10px', backgroundColor: 'inherit'}}>
-                <Text color="white" weight='800' content='microgram'/>
+                <Text color="white" weight='800' content='AQI'/>
               </div>
             </div>
             
