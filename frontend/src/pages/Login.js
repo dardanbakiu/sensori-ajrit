@@ -9,8 +9,8 @@ const Home = () => {
     console.log('Login : ', email, password)
 
     axios.post("/login", {
-      email: 'dardan@gmail.com',
-      password: 'dardan'
+      email: email,
+      password: password
     }).then((data) => {
       console.log("login DATA :  ", data);
     });
