@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import axios from "../axiosinstance";
   
 const Home = () => {
   const [email, setEmail] = useState('')
@@ -7,6 +7,13 @@ const Home = () => {
 
   const login = () => {
     console.log('Login : ', email, password)
+
+    axios.post("/login", {
+      email: email,
+      password: password
+    }).then((data) => {
+      console.log("login DATA :  ", data);
+    });
   }
 
   return (
