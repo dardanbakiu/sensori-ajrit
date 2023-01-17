@@ -6,6 +6,7 @@ import { LineChart } from 'react-chartkick'
 import axios from "../axiosinstance";
 import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
+import './home.scss'
   
 const Home = () => {
   const [detailedAQI, setDetailedAQI] = useState({})
@@ -113,12 +114,29 @@ const Home = () => {
 
     <div>
       <Header />
-      <Text 
-        position='center'
-        padding='20px 0'
-        size='50px'
-        content='Rezultati i Performancës së Ndotjes'
-      />
+
+      <div style={{
+        display:'flex',
+        justifyContent: 'space-evenly'
+      }}>
+        <div className='nav-tab'>
+          <Text 
+            position='center'
+            padding='20px 0'
+            size='20px'
+            content='Rezultati i Performancës së Ndotjes'
+          />
+        </div>
+
+        <div className='nav-tab'>
+          <Text 
+            position='center'
+            padding='20px 0'
+            size='20px'
+            content='Pamja e ekspertit'
+          />
+        </div>
+      </div>
 
       <div style={{
         display: 'flex',

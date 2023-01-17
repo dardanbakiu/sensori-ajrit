@@ -1,11 +1,19 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import Header from '../components/header/Header'
+import Text from '../components/text/Text'
+import Box from '../components/box/Box'
+import { LineChart } from 'react-chartkick'
+import axios from "../axiosinstance";
+import 'chartkick/chart.js'
+import {getQualityColor} from '../helper'
+import './home.scss'
   
-const Home = () => {
+const Details = () => {
   return (
     <div>
-      <h1>Hello world</h1>
+      <Header />
     </div>
   );
 };
   
-export default Home;
+export default Details;
