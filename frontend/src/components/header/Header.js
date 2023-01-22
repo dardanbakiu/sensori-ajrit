@@ -2,12 +2,20 @@ import React from 'react';
 import './header.scss'
 import Text from '../text/Text'
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const Header = () => {
   const navigate = useNavigate();
 
-  function navigateToLogin() {
-    navigate("/login");
+  function navigateToDetails() {
+    const token = Cookies.get('sessionToken');
+    console.log(token)
+    if(!token) {
+      navigate("/login");
+    }
+    else {
+      navigate("/details");
+    }
   }
 
   return (
@@ -50,7 +58,7 @@ const Header = () => {
 
         <div 
           className='nav-tab'
-          onClick={()=>navigateToLogin()}
+          onClick={()=>navigateToDetails()}
           >
           <Text 
             position='center'
