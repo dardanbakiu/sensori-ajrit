@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
+
+$pink: #c6538c;
+$green: #57bf9c;
+$purple: #c09ff8;
+$yellow: #f9d26a;
+
+body {
+  margin: 0 10% 200px 10%;
+  font-family: 'Montserrat';
+  background-color:#F0F0F0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

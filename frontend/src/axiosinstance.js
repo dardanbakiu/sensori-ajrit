@@ -8,7 +8,7 @@ let baseURL;
 if(localhost) {
   const url = window.location.origin.split(':');
   const port = window.location.port;
-  baseURL = port === '3000' ? `${url[0]}:${url[1]}:5000` : window.location.origin.toString();
+  baseURL = port === '3000' ? `${url[0]}:${url[1]}:3001` : window.location.origin.toString();
 } else {
   baseURL = `${window.location.origin.toString()}`;
 }
