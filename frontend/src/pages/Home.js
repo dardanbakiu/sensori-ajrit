@@ -58,6 +58,9 @@ const Home = () => {
 
       setDetailedAQI(obj)
       setDaily(response.data)
+
+      console.log('daily data : ')
+      console.log(response.data)
     })
     .catch(function (error) {
       console.log(error);
