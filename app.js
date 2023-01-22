@@ -24,5 +24,5 @@ app.get("/dir", (req, res) => {
 
 app.use("/api", router);
 
-const PORT = process.env.PORT || 5000; //IMPORTANT: do not change!
+const PORT = process.env.PORT || 3001; //IMPORTANT: do not change!
 app.listen(PORT, () => console.log(`App running on port : ${PORT}`));

@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
 import axios from "../axiosinstance";
+import './login.scss'
   
 const Home = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
-  const login = () => {
-    console.log('Login : ', email, password)
+  const handleSubmit = () => {
+    // console.log('Login : ', email, password)
 
     axios.post("/login", {
       email: email,
       password: password
     }).then((data) => {
-      console.log("login DATA :  ", data);
+      console.log(data.status)
     });
   }
 
   return (
     <div
       style={{
+        marginTop:'100px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -26,13 +29,35 @@ const Home = () => {
       }}
     >
       <h1>Login</h1>
-      <div style={{
-        width: '300px'
-      }}>
-        <input type="text" onChange={e => setEmail(e.target.value)} name="email" placeholder='email'/>
-        <input type="text" onChange={e => setPassword(e.target.value)} name="password" placeholder='password'/>
-        <button onClick={ login }>Login</button>
+
+      <div className='login-container'>
+        <label>
+          <input
+            type="email"
+            value={email}
+            placeholder="Email"
+            onChange={(event) => setEmail(event.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          <input
+            type="password"
+            placeholder='Password'
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <button onClick={handleSubmit}>Login</button>
+
+        <br/>
+
+        <p>{error}</p>
       </div>
+
     </div>
   );
 };
