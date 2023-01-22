@@ -7,8 +7,11 @@ import axios from "../axiosinstance";
 import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import './home.scss'
+import { useNavigate } from "react-router-dom";
+
   
 const Home = () => {
+  const navigate = useNavigate();
   const [detailedAQI, setDetailedAQI] = useState({})
   const [chartData, setChartData] = useState([{}])
   const [currentQuality, setCurrentQuality] = useState(72);
@@ -26,6 +29,10 @@ const Home = () => {
       }
     }
     return total / count;
+  }
+
+  function navigateToLogin() {
+    navigate("/login");
   }
 
   const getChartData = () => {
@@ -128,7 +135,10 @@ const Home = () => {
           />
         </div>
 
-        <div className='nav-tab'>
+        <div 
+          className='nav-tab'
+          onClick={()=>navigateToLogin()}
+          >
           <Text 
             position='center'
             padding='20px 0'
