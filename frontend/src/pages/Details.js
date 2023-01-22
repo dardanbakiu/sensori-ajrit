@@ -8,7 +8,9 @@ import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import AirQualityComponent from '../components/AirQualityComponent';
 import Slider from 'react-slick';
+import {CSVLink, CSVDownload} from 'react-csv';
 import { Doughnut } from 'react-chartjs-2';
+import CSVimg from '../components/csv.png'
 
 import {
   ResponsiveContainer,
@@ -19,12 +21,11 @@ import {
   PolarRadiusAxis,
   Tooltip
 } from 'recharts';
-
-
   
 const Details = () => {
   const [daily, setDaily] = useState([]);
   const [spiderData, setSpiderData] = useState([]);
+  const [exportData, setExportData] = useState();
   const [doughData, setDoughData] = useState({
     labels: ['no2','o3','pm10','pm25','so2'],
     datasets: [
@@ -132,6 +133,22 @@ const Details = () => {
         />
 
 
+      </div>
+
+
+      <div>
+      <br/><br/>
+        <div style={{display: 'flex', alignSelf:'start'}}>
+          <CSVLink data={daily}>
+          <h3 style={{
+            color: 'black',
+            textDecoration: 'none !important'
+          }}
+          >Shkarko te dhenat ne CSV <br/> mundesuar nga <br/> <a href="https://fiek.uni-pr.edu/" target="_blank" rel="noopener noreferrer"> Universiteti i Prishtines</a></h3>
+            <br/>
+            <img src={CSVimg} width="100px"/>
+          </CSVLink>
+        </div>
       </div>
 
     </div>

@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 
   
 const Home = () => {
-  const navigate = useNavigate();
   const [detailedAQI, setDetailedAQI] = useState({})
   const [chartData, setChartData] = useState([{}])
   const [currentQuality, setCurrentQuality] = useState(72);
