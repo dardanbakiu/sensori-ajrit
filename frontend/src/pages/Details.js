@@ -26,12 +26,12 @@ const Details = () => {
   const [daily, setDaily] = useState([]);
   const [spiderData, setSpiderData] = useState([]);
   const [doughData, setDoughData] = useState({
-    labels: ['co', 'no2','o3','pm10','pm25','so2'],
+    labels: ['no2','o3','pm10','pm25','so2'],
     datasets: [
       {
         data: [300, 50, 100,30,100,20],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0']
+        backgroundColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+        hoverBackgroundColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0']
       }
     ]
   })
@@ -49,13 +49,13 @@ const Details = () => {
         });
   }
 
-  function fixDoughnutData(obj, keys = ['co', 'no2','o3','pm10','pm25','so2']) {
+  function fixDoughnutData(obj, keys = ['no2','o3','pm10','pm25','so2']) {
     const values = Object.keys(obj)
     .filter(key => keys.includes(key))
     .map(key => obj[key])
     
     const final = {
-      labels: ['co', 'no2','o3','pm10','pm25','so2'],
+      labels: ['no2','o3','pm10','pm25','so2'],
       datasets: [
         {
           data: values,
@@ -120,7 +120,7 @@ const Details = () => {
           </div>
       </div>
 
-      <div>
+      <div style={{display:'flex'}}>
         <Doughnut
           data={doughData}
           options={{
@@ -130,6 +130,8 @@ const Details = () => {
             }
           }}
         />
+
+
       </div>
 
     </div>
