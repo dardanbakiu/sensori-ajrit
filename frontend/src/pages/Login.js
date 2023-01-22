@@ -15,7 +15,7 @@ const Home = () => {
       password: password
     }).then(({data}) => {
       console.log('here we got an error : ', data)
-      Cookies.set('sessionToken', data.token, { expires: 1/(2880 * 2), secure: true }); //1min token
+      Cookies.set('sessionToken', data.token, { expires: 1/1440, secure: true }); //1min token
 
 
       // const token = Cookies.get('sessionToken');

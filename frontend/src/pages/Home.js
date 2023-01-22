@@ -31,10 +31,6 @@ const Home = () => {
     return total / count;
   }
 
-  function navigateToLogin() {
-    navigate("/login");
-  }
-
   const getChartData = () => {
     axios.get("/chartDailyDate")
     .then(function (response) {
