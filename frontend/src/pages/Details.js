@@ -24,7 +24,7 @@ const Details = () => {
   const [daily, setDaily] = useState([]);
   const [spiderData, setSpiderData] = useState([]);
 
-  function objectToArray(obj, keys = ['co','o3','pm10','pm25','so2']) {
+  function objectToArray(obj, keys = ['o3','pm10','pm25','so2']) {
     return Object.keys(obj)
         .filter(key => keys.includes(key)) // filter out the keys that don't match the provided keys
         .map((key) => {
@@ -60,7 +60,7 @@ const Details = () => {
       <Header />
 
       <div style={{display: "flex", flexDirection: "row"}}>
-        <div style={{flex: "0.7", backgroundColor: "red", borderRadius: "10px",height: '' , marginRight: "10px", 
+        <div style={{flex: "0.7", backgroundColor: "white", borderRadius: "10px",height: '230px' , marginRight: "10px", 
         padding: "20px",overflowY: "hidden", overflowX:'scroll', whiteSpace:'nowrap'}}>
 
           <div style={{display: 'flex', flexWrap: 'nowrap'}}>
@@ -70,12 +70,12 @@ const Details = () => {
           </div>
 
         </div>
-        <div style={{flex: "0.3", borderRadius: "10px", padding: "20px", backgroundColor:'red'}}>
+        <div style={{flex: "0.3", borderRadius: "10px", padding: "20px", backgroundColor:''}}>
           <ResponsiveContainer width="100%" height={300}>
             <RadarChart data={spiderData}>
               <PolarGrid />
               <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis angle={30} domain={[0, 150]} />
+              <PolarRadiusAxis angle={30} domain={[0, 80]} />
               <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
               <Tooltip />
             </RadarChart>

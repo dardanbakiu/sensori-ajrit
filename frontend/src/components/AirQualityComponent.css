@@ -1,8 +1,14 @@
 .air-quality-container {
-  background-color: gray;
+  background-color: #D0D0D0;
   border-radius: 10px;
   padding: 20px;
   margin: 0 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.air-quality-container:hover {
+  transform: scale(1.1);
 }
 
 .aqi-and-emoticon {
