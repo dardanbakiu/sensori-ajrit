@@ -19,7 +19,7 @@ const Home = () => {
     }).then(({data}) => {
       console.log('here we got an error : ', data)
       Cookies.set('sessionToken', data.token, { expires: 1/1440, secure: true }); //1min token
-      navigate('/detials')
+      navigate('/details')
       // const token = Cookies.get('sessionToken');
       // Cookies.remove('sessionToken');
       setError('')
