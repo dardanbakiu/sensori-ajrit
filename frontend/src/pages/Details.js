@@ -8,6 +8,8 @@ import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import AirQualityComponent from '../components/AirQualityComponent';
 import Slider from 'react-slick';
+import { Doughnut } from 'react-chartjs-2';
+
 import {
   ResponsiveContainer,
   Radar,
@@ -23,6 +25,16 @@ import {
 const Details = () => {
   const [daily, setDaily] = useState([]);
   const [spiderData, setSpiderData] = useState([]);
+  const [doughData, setDoughData] = useState({
+    labels: ['co', 'no2','o3','pm10','pm25','so2'],
+    datasets: [
+      {
+        data: [300, 50, 100,30,100,20],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0']
+      }
+    ]
+  })
 
   function objectToArray(obj, keys = ['o3','pm10','pm25','so2']) {
     return Object.keys(obj)
@@ -35,6 +47,25 @@ const Details = () => {
                 fullMark: 100
             };
         });
+  }
+
+  function fixDoughnutData(obj, keys = ['co', 'no2','o3','pm10','pm25','so2']) {
+    const values = Object.keys(obj)
+    .filter(key => keys.includes(key))
+    .map(key => obj[key])
+    
+    const final = {
+      labels: ['co', 'no2','o3','pm10','pm25','so2'],
+      datasets: [
+        {
+          data: values,
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0']
+        }
+      ]
+    }
+
+    setDoughData(final)
   }
 
   useEffect(() => {
@@ -53,9 +84,9 @@ const Details = () => {
       console.log(error);
     });
   }
-  
 
   return (
+
     <div>
       <Header />
 
@@ -67,6 +98,8 @@ const Details = () => {
             {daily.map((item,key) => (
               <div onClick={() => {
                 setSpiderData(objectToArray(daily[key]))
+                fixDoughnutData(daily[key])
+                
               }} >
               <AirQualityComponent {...daily[key]}/>
               </div>
@@ -86,6 +119,19 @@ const Details = () => {
           </ResponsiveContainer>
           </div>
       </div>
+
+      <div>
+        <Doughnut
+          data={doughData}
+          options={{
+            maintainAspectRatio: false,
+            legend: {
+              position: 'right'
+            }
+          }}
+        />
+      </div>
+
     </div>
   );
 };
