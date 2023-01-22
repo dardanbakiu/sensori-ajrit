@@ -14,14 +14,14 @@ const login = (req, res) => {
     // If the user is not found, return a 401 Unauthorized response
     res.status(401).json({error: true, msg: 'Invalid email or password'});
   } else {
-    console.log('inside else heloooooo ketu')
-    res.status(200).json({error: false})
-    // If the user is found, create and sign a JWT with the user's id as the subject
-    // const token = jwt.sign(
-    //   { sub: user.id }, 'secretkey',  { expiresIn: 3600 },);
+    // res.status(200).json({error: false})
 
-    // // Send the token back in the response
-    // res.send({ token });
+    // If the user is found, create and sign a JWT with the user's id as the subject
+    const token = jwt.sign(
+      { sub: user.id }, 'secretkey',  { expiresIn: 3600 },);
+
+    // Send the token back in the response
+    res.status(200).send({ token: token, error: false });
   }
 }
 

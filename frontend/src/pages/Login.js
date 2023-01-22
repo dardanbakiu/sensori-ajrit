@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import axios from "../axiosinstance";
 import './login.scss'
-  
+import Cookies from 'js-cookie';
+
 const Home = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -12,8 +13,13 @@ const Home = () => {
     axios.post("/login", {
       email: email,
       password: password
-    }).then((data) => {
+    }).then(({data}) => {
       console.log('here we got an error : ', data)
+      Cookies.set('sessionToken', data.token, { expires: 1/(2880 * 2), secure: true }); //1min token
+
+
+      // const token = Cookies.get('sessionToken');
+      // Cookies.remove('sessionToken');
       setError('')
     }).catch((err) => {
       setError('Kredencialet jane gabim!')
