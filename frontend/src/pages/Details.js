@@ -204,7 +204,7 @@ const Details = () => {
 
       <br/><br/><br/><br/>
       <div>
-        <div style={{display: 'flex', justifyContent:'start'}}>
+        <div style={{display: 'flex', justifyContent:'end'}}>
           <p>
             Shkarko Te <br></br> Dhenat Ketu
           </p>
