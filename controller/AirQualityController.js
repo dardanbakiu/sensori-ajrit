@@ -19,7 +19,6 @@ const airQuality = (req, res) => {
     }
   };
   
-  
   axios.request(options).then(function (response) {
     res.json(response.data)
   }).catch(function (error) {

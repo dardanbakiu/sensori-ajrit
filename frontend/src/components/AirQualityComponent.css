@@ -2,4 +2,11 @@
   background-color: gray;
   border-radius: 10px;
   padding: 20px;
+  margin: 0 10px;
+}
+
+.aqi-and-emoticon {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
 }
