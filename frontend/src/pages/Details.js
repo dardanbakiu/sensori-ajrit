@@ -65,7 +65,11 @@ const Details = () => {
 
           <div style={{display: 'flex', flexWrap: 'nowrap'}}>
             {daily.map((item,key) => (
+              <div onClick={() => {
+                setSpiderData(objectToArray(daily[key]))
+              }} >
               <AirQualityComponent {...daily[key]}/>
+              </div>
             ))}
           </div>
 
