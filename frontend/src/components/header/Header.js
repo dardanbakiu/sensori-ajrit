@@ -47,7 +47,9 @@ const Header = () => {
         display:'flex',
         justifyContent: 'space-evenly'
       }}>
-        <div className='nav-tab'>
+        <div className='nav-tab' 
+          onClick={() => navigate('/')}
+        >
           <Text 
             position='center'
             padding='20px 0'

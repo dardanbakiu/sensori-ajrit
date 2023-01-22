@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import axios from "../axiosinstance";
 import './login.scss'
 import Cookies from 'js-cookie';
+import Header from '../components/header/Header'
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -16,8 +19,7 @@ const Home = () => {
     }).then(({data}) => {
       console.log('here we got an error : ', data)
       Cookies.set('sessionToken', data.token, { expires: 1/1440, secure: true }); //1min token
-
-
+      navigate('/detials')
       // const token = Cookies.get('sessionToken');
       // Cookies.remove('sessionToken');
       setError('')
@@ -27,6 +29,8 @@ const Home = () => {
   }
 
   return (
+  <div>
+    <Header/>
     <div
       style={{
         marginTop:'100px',
@@ -36,6 +40,7 @@ const Home = () => {
         alignItems: 'center'
       }}
     >
+      
       <h1>Login</h1>
 
       <div className='login-container'>
@@ -67,6 +72,7 @@ const Home = () => {
       </div>
 
     </div>
+  </div>
   );
 };
   
