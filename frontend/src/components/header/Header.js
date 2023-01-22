@@ -1,7 +1,15 @@
 import React from 'react';
 import './header.scss'
+import Text from '../text/Text'
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  function navigateToLogin() {
+    navigate("/login");
+  }
+
   return (
     <div>
       <div className='header'>
@@ -26,6 +34,32 @@ const Header = () => {
             margin: '0'
         }}
       />
+
+<div style={{
+        display:'flex',
+        justifyContent: 'space-evenly'
+      }}>
+        <div className='nav-tab'>
+          <Text 
+            position='center'
+            padding='20px 0'
+            size='20px'
+            content='Rezultati i Performancës së Ndotjes'
+          />
+        </div>
+
+        <div 
+          className='nav-tab'
+          onClick={()=>navigateToLogin()}
+          >
+          <Text 
+            position='center'
+            padding='20px 0'
+            size='20px'
+            content='Pamja e ekspertit'
+          />
+        </div>
+      </div>
     </div>
   );
 };

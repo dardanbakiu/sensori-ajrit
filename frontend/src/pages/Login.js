@@ -8,14 +8,16 @@ const Home = () => {
   const [error, setError] = useState('')
 
   const handleSubmit = () => {
-    // console.log('Login : ', email, password)
 
     axios.post("/login", {
       email: email,
       password: password
     }).then((data) => {
-      console.log(data.status)
-    });
+      console.log('here we got an error : ', data)
+      setError('')
+    }).catch((err) => {
+      setError('Kredencialet jane gabim!')
+    })
   }
 
   return (
@@ -50,12 +52,12 @@ const Home = () => {
             required
           />
         </label>
+        
+        <p style={{color:'red'}}>{error}</p>
         <br />
         <button onClick={handleSubmit}>Login</button>
 
         <br/>
-
-        <p>{error}</p>
       </div>
 
     </div>

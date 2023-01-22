@@ -123,32 +123,6 @@ const Home = () => {
       <Header />
 
       <div style={{
-        display:'flex',
-        justifyContent: 'space-evenly'
-      }}>
-        <div className='nav-tab'>
-          <Text 
-            position='center'
-            padding='20px 0'
-            size='20px'
-            content='Rezultati i Performancës së Ndotjes'
-          />
-        </div>
-
-        <div 
-          className='nav-tab'
-          onClick={()=>navigateToLogin()}
-          >
-          <Text 
-            position='center'
-            padding='20px 0'
-            size='20px'
-            content='Pamja e ekspertit'
-          />
-        </div>
-      </div>
-
-      <div style={{
         display: 'flex',
         justifyContent: 'center',
       }}>
