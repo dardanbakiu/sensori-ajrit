@@ -7,7 +7,6 @@ import axios from "../axiosinstance";
 import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import './home.scss'
-import { useNavigate } from "react-router-dom";
 
   
 const Home = () => {

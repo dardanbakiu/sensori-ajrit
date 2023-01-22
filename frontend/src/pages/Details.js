@@ -10,6 +10,7 @@ import AirQualityComponent from '../components/AirQualityComponent';
 import Slider from 'react-slick';
 import {CSVLink, CSVDownload} from 'react-csv';
 import { Doughnut } from 'react-chartjs-2';
+import { Bar, PolarArea } from "react-chartjs-2";
 import CSVimg from '../components/csv.png'
 
 import {
@@ -26,6 +27,24 @@ const Details = () => {
   const [daily, setDaily] = useState([]);
   const [spiderData, setSpiderData] = useState([]);
   const [exportData, setExportData] = useState();
+  // const [polarData, setPolarData] = useState();
+  const [barData, setBarData] = useState({
+    // Name of the variables on x-axies for each bar
+    labels: ['no2','o3','pm10','pm25','so2'],
+    datasets: [
+      {
+        // Label for bars
+        label: "Parametrat e ajrit",
+        // Data or value of your each variable
+        data: [300, 50, 100,30,100,20],
+        // Color of each bar
+        backgroundColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+        // Border color of each bar
+        borderColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+        borderWidth: 0.5,
+      },
+    ],
+  });
   const [doughData, setDoughData] = useState({
     labels: ['no2','o3','pm10','pm25','so2'],
     datasets: [
@@ -66,6 +85,25 @@ const Details = () => {
       ]
     }
 
+    const barFinal = {
+      // Name of the variables on x-axies for each bar
+      labels: ['no2','o3','pm10','pm25','so2'],
+      datasets: [
+        {
+          // Label for bars
+          label: "Parametrat e ajrit",
+          // Data or value of your each variable
+          data: values,
+          // Color of each bar
+          backgroundColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+          // Border color of each bar
+          borderColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+          borderWidth: 0.5,
+        },
+      ],
+    }
+
+    setBarData(barFinal)
     setDoughData(final)
   }
 
@@ -121,31 +159,56 @@ const Details = () => {
           </div>
       </div>
 
-      <div style={{display:'flex'}}>
+              <br/>
+      <div style={{display:'flex', justifyContent: 'space-between'}}>
+        <div style={{width:'400px'}}>
         <Doughnut
           data={doughData}
           options={{
             maintainAspectRatio: false,
-            legend: {
-              position: 'right'
-            }
+            
           }}
         />
+        </div>
 
+        <div>
+        <Bar
+          data={barData}
+          // Height of graph
 
+          options={{
+            maintainAspectRatio: false,
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    // The y-axis value will start from zero
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+            legend: {
+              labels: {
+                fontSize: 15,
+              },
+            },
+          }}
+        />
+        </div>
+
+        <div>
+         <PolarArea data={barData} />
+        </div>
       </div>
 
-
+      <br/><br/><br/><br/>
       <div>
-      <br/><br/>
-        <div style={{display: 'flex', alignSelf:'start'}}>
+        <div style={{display: 'flex', justifyContent:'start'}}>
+          <p>
+            Shkarko Te <br></br> Dhenat Ketu
+          </p>
           <CSVLink data={daily}>
-          <h3 style={{
-            color: 'black',
-            textDecoration: 'none !important'
-          }}
-          >Shkarko te dhenat ne CSV <br/> mundesuar nga <br/> <a href="https://fiek.uni-pr.edu/" target="_blank" rel="noopener noreferrer"> Universiteti i Prishtines</a></h3>
-            <br/>
             <img src={CSVimg} width="100px"/>
           </CSVLink>
         </div>
