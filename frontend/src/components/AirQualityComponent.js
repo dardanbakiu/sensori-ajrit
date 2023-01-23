@@ -39,7 +39,7 @@ const AirQualityComponent = (props) => {
       <div>{translateDate(day)}</div>
         <div className='aqi-and-emoticon'>
           <div>
-            <p>{aqiConst}</p>
+            {aqiConst} <br/>
             {aqiText}
           </div>
           <div>{aqiImage}</div>

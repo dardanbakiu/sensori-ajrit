@@ -164,7 +164,7 @@ const Details = () => {
               <br/>
       <div style={{display:'flex', justifyContent: 'space-between'}}>
         <div style={{width:'400px'}}>
-        <Doughnut
+        {/* <Doughnut
           data={
             {
               labels: ['no2','o3','pm10','pm25','so2'],
@@ -181,7 +181,7 @@ const Details = () => {
             maintainAspectRatio: false,
             
           }}
-        />
+        /> */}
         </div>
 
         <div>
