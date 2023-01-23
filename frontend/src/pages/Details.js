@@ -12,6 +12,7 @@ import {CSVLink, CSVDownload} from 'react-csv';
 import { Doughnut } from 'react-chartjs-2';
 import { Bar, PolarArea } from "react-chartjs-2";
 import CSVimg from '../components/csv.png'
+import "chart.js/auto";
 
 import {
   ResponsiveContainer,
