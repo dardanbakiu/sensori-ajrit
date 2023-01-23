@@ -12,6 +12,8 @@ import {CSVLink, CSVDownload} from 'react-csv';
 import { Doughnut } from 'react-chartjs-2';
 import { Bar, PolarArea } from "react-chartjs-2";
 import CSVimg from '../components/csv.png'
+import {Chart, ArcElement} from 'chart.js'
+// Chart.register(ArcElement);
 
 import {
   ResponsiveContainer,
@@ -135,7 +137,7 @@ const Details = () => {
 
           <div style={{display: 'flex', flexWrap: 'nowrap'}}>
             {daily.map((item,key) => (
-              <div onClick={() => {
+              <div key={key} onClick={() => {
                 setSpiderData(objectToArray(daily[key]))
                 fixDoughnutData(daily[key])
                 
@@ -163,7 +165,18 @@ const Details = () => {
       <div style={{display:'flex', justifyContent: 'space-between'}}>
         <div style={{width:'400px'}}>
         <Doughnut
-          data={doughData}
+          data={
+            {
+              labels: ['no2','o3','pm10','pm25','so2'],
+              datasets: [
+                {
+                  data: [300, 50, 100,30,100,20],
+                  backgroundColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0'],
+                  hoverBackgroundColor: ['#36A2EB', '#FFCE56','#800080', '#008000', '#88d8b0']
+                }
+              ]
+            }
+          }
           options={{
             maintainAspectRatio: false,
             
@@ -172,10 +185,8 @@ const Details = () => {
         </div>
 
         <div>
-        <Bar
-          data={barData}
+        {/* <Bar  data={barData}
           // Height of graph
-
           options={{
             maintainAspectRatio: false,
             scales: {
@@ -194,11 +205,11 @@ const Details = () => {
               },
             },
           }}
-        />
+        /> */}
         </div>
 
         <div>
-         <PolarArea data={barData} />
+         {/* <PolarArea data={barData} /> */}
         </div>
       </div>
 
@@ -206,7 +217,10 @@ const Details = () => {
       <div>
         <div style={{display: 'flex', justifyContent:'end'}}>
           <p>
-            Shkarko Te <br></br> Dhenat Ketu
+            Shkarko Te 
+          </p>
+          <p>
+            Dhenat Ketu
           </p>
           <CSVLink data={daily}>
             <img src={CSVimg} width="100px"/>
