@@ -69,15 +69,6 @@ const Home = () => {
     });
   }
 
-  function filterByDate(start_date, end_date, array) {
-    return array.filter(object => {
-      const day = new Date(object.day);
-      const start = new Date(start_date);
-      const end = new Date(end_date);
-      return day > start && day < end;
-    });
-  }
-
   const getDailyData = () => {
     axios.post("/airQuality", {time: 'daily'})
     .then(function (response) {
@@ -117,6 +108,21 @@ const Home = () => {
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  function filterByDates(start_date = startDate, end_date=endDate, arr=chartData) {
+    let start = new Date(start_date);
+    let end = new Date(end_date);
+    arr.forEach(object => {
+        Object.keys(object.data).forEach(key => {
+            let itemDate = new Date(key);
+            if (!(itemDate >= start && itemDate <= end)) {
+                delete object.data[key];
+            }
+        });
+    });
+
+    setChartData(arr)
   }
 
   useEffect(() => {
@@ -260,18 +266,21 @@ const Home = () => {
       </div>
       
       <div style={{margin: '30px 10%'}}>
-        <div style={{display: 'flex', justifyContent:'space-evenly', width:'50%'}}>
+        {/* <div style={{display: 'flex', justifyContent:'space-evenly', width:'40%'}}>
           <div>Dita Startuese: <DatePicker onChange={setStartDate} value={startDate} /></div>
           <div>Dita Perfundimtare: <DatePicker onChange={setEndDate} value={endDate} /></div>
-        </div>
+          <button style={{width: '80px', height:'30px', alignSelf:'end'}} onClick={() => {
+            filterByDates();  
+          }}> Filtro </button>
+        </div> */}
         <LineChart data={chartData} />
         <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>Mohim përgjegjësie: Asnjë premtim, garanci ose garanci nuk ofrohet në lidhje me të dhënat e shfaqura në këtë faqe interneti. Është përgjegjësi e përdoruesve të këtyre të dhënave të verifikojnë saktësinë e të dhënave dhe operatorët e kësaj faqeje nuk marrin asnjë përgjegjësi për vendimet ose veprimet e ndërmarra nga përdoruesit e këtyre të dhënave.</p>
       </div>
 
       <div style={{margin: '30px 10%', display:'flex', justifyContent:'center'}}>
           <div style={{backgroundColor:'white', width:'100%', height:'500px', borderRadius:'30px', overflowY:'auto',overflowX:'hidden'}}>
-            {daily.slice(0, 5).map((el)=>(
-              <div style={{width:'100%', height:'20px', backgroundColor:getQualityColor(el.aqi), justifyContent:'space-around',color:'white',padding:'20px 20px', 
+            {daily.slice(0, 5).map((el, key)=>(
+              <div key={key} style={{width:'100%', height:'20px', backgroundColor:getQualityColor(el.aqi), justifyContent:'space-around',color:'white',padding:'20px 20px', 
               display:'flex', fontSize:'20px', fontWeight:600 }}>
                 <p>{translateDate(el.day)} </p>
                 <p>AQI : {el.aqi}</p>
