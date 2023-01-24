@@ -7,7 +7,6 @@ import axios from "../axiosinstance";
 import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import './home.scss'
-
   
 const Home = () => {
   const [detailedAQI, setDetailedAQI] = useState({})
@@ -16,6 +15,16 @@ const Home = () => {
   const [daily, setDaily] = useState([]);
   const [qualityInWord, setQualityInWord] = useState('Moderate')
   const [qualityColor, setQualityColor] = useState('#f9d26a')
+
+  function translateDate(dateString) {
+    var dateArray = dateString.split(":");
+    var date = new Date(dateArray[0]);
+    var months = ["Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor", "Korrik", "Gusht", "Shtator", "Tetor", "Nëntor", "Dhjetor"];
+    var day = date.getDate();
+    var month = months[date.getMonth()];
+    var year = date.getFullYear();
+    return day + " " + month + " " + year;
+  }
 
   function averageAttribute(objects, attribute) {
     let total = 0;
@@ -235,7 +244,7 @@ const Home = () => {
             {daily.slice(0, 5).map((el)=>(
               <div style={{width:'100%', height:'20px', backgroundColor:getQualityColor(el.aqi), justifyContent:'space-around',color:'white',padding:'20px 20px', 
               display:'flex', fontSize:'20px', fontWeight:600 }}>
-                <p>{el.day} → </p>
+                <p>{translateDate(el.day)} </p>
                 <p>AQI : {el.aqi}</p>
                 <p>pm25 : {el.pm25}</p>
                 <p>pm10 : {el.pm10}</p>
