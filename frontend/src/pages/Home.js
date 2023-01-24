@@ -227,12 +227,12 @@ const Home = () => {
       
       <div style={{margin: '30px 10%'}}>
         <LineChart data={chartData} />
-        <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>Disclaimer: No promise, warranty or guarantee is offered in relation to the data displayed on this web site. It is the responsibility of users of these data to verify the accuracy of data and the operators of this site take no responsibility for decisions or actions taken by users of these data.</p>
+        <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>Mohim përgjegjësie: Asnjë premtim, garanci ose garanci nuk ofrohet në lidhje me të dhënat e shfaqura në këtë faqe interneti. Është përgjegjësi e përdoruesve të këtyre të dhënave të verifikojnë saktësinë e të dhënave dhe operatorët e kësaj faqeje nuk marrin asnjë përgjegjësi për vendimet ose veprimet e ndërmarra nga përdoruesit e këtyre të dhënave.</p>
       </div>
 
       <div style={{margin: '30px 10%', display:'flex', justifyContent:'center'}}>
           <div style={{backgroundColor:'white', width:'100%', height:'500px', borderRadius:'30px', overflowY:'auto',overflowX:'hidden'}}>
-            {daily.map((el)=>(
+            {daily.slice(0, 5).map((el)=>(
               <div style={{width:'100%', height:'20px', backgroundColor:getQualityColor(el.aqi), justifyContent:'space-around',color:'white',padding:'20px 20px', 
               display:'flex', fontSize:'20px', fontWeight:600 }}>
                 <p>{el.day} → </p>
@@ -241,6 +241,10 @@ const Home = () => {
                 <p>pm10 : {el.pm10}</p>
               </div>
             ))}
+
+            <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>
+              Per me shume te dhena kontaktoni fiek@uni-pr.edu.
+            </p>
           </div>
       </div>
     
