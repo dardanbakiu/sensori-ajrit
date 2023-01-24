@@ -23,12 +23,37 @@ import {
   PolarRadiusAxis,
   Tooltip
 } from 'recharts';
+
+function translateDate(dateString) {
+  var dateArray = dateString.split(":");
+  var date = new Date(dateArray[0]);
+  var months = ["Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor", "Korrik", "Gusht", "Shtator", "Tetor", "Nëntor", "Dhjetor"];
+  var day = date.getDate();
+  var month = months[date.getMonth()];
+  var year = date.getFullYear();
+  return day + " " + month + " " + year;
+}
   
 const Details = () => {
   const [daily, setDaily] = useState([]);
   const [spiderData, setSpiderData] = useState([]);
   const [exportData, setExportData] = useState();
   // const [polarData, setPolarData] = useState();
+  const [clickedDay, setClickedDay] = useState({
+    "aqi": 184,
+    "co": 362.95,
+    "datetime": "2022-12-26:20",
+    "no2": 11.84,
+    "o3": 38.11,
+    "pm10": 33.85,
+    "pm25": 25.39,
+    "so2": 2.65,
+    "timestamp_local": "2022-12-26T21:00:00",
+    "timestamp_utc": "2022-12-26T20:00:00",
+    "ts": 1672084800,
+    "day": "2022-09-02",
+    "qualityName": "Unhealthy"
+});
   const [barData, setBarData] = useState({
     // Name of the variables on x-axies for each bar
     labels: ['no2','o3','pm10','pm25','so2'],
@@ -118,7 +143,8 @@ const Details = () => {
       setDaily(response.data)
       setSpiderData(objectToArray(response.data[0]))
 
-      console.log(objectToArray(response.data[0]))
+      console.log('kqyri atrinutet :', response.data[0])
+      setClickedDay(response.data[0])
     })
     .catch(function (error) {
       console.log(error);
@@ -139,7 +165,7 @@ const Details = () => {
               <div onClick={() => {
                 setSpiderData(objectToArray(daily[key]))
                 fixDoughnutData(daily[key])
-                
+                setClickedDay(daily[key])
               }} >
               <AirQualityComponent {...daily[key]}/>
               </div>
@@ -157,11 +183,27 @@ const Details = () => {
               <Tooltip />
             </RadarChart>
           </ResponsiveContainer>
-          </div>
+        </div>
       </div>
 
               <br/>
       <div style={{display:'flex', justifyContent: 'space-between'}}>
+      {  <div>
+              <div className='aqi-and-emoticon'>
+                <div>
+                  <p style={{fontSize: '40px'}}>Kualiteti : {clickedDay['aqi']}</p>
+                </div>
+              </div>
+            <div>
+              <div style={{fontSize: '40px', color: ''}}>CO: <b>{clickedDay['co']}</b></div>
+              <div style={{fontSize: '40px'}}>NO2: <b>{clickedDay['no2']}</b></div>
+              <div style={{fontSize: '40px'}}>O3: <b>{clickedDay['o3']}</b></div>
+              <div style={{fontSize: '40px'}}>PM10: <b>{clickedDay['pm10']}</b></div>
+              <div style={{fontSize: '40px'}}>PM25: <b>{clickedDay['pm25']}</b></div>
+            </div>
+  
+            </div> }
+
         <div style={{width:'400px'}}>
         <Doughnut
           data={doughData}
@@ -205,13 +247,15 @@ const Details = () => {
 
       <br/><br/><br/><br/>
       <div>
-        <div style={{display: 'flex', justifyContent:'end'}}>
-          <p>
-            Shkarko Te <br></br> Dhenat Ketu
-          </p>
-          <CSVLink data={daily}>
-            <img src={CSVimg} width="100px"/>
-          </CSVLink>
+        <div style={{display: 'flex', justifyContent:'space-evenly'}}>
+          <div>
+            <p>
+              Shkarko Te <br></br> Dhenat Ketu
+            </p>
+            <CSVLink data={daily}>
+              <img src={CSVimg} width="100px"/>
+            </CSVLink>
+          </div>
         </div>
       </div>
 
