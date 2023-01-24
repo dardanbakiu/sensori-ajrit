@@ -40,6 +40,15 @@ const Home = () => {
     });
   }
 
+  function filterByDate(start_date, end_date, array) {
+    return array.filter(object => {
+      const day = new Date(object.day);
+      const start = new Date(start_date);
+      const end = new Date(end_date);
+      return day > start && day < end;
+    });
+  }
+
   const getDailyData = () => {
     axios.post("/airQuality", {time: 'daily'})
     .then(function (response) {
@@ -218,6 +227,7 @@ const Home = () => {
       
       <div style={{margin: '30px 10%'}}>
         <LineChart data={chartData} />
+        <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>Disclaimer: No promise, warranty or guarantee is offered in relation to the data displayed on this web site. It is the responsibility of users of these data to verify the accuracy of data and the operators of this site take no responsibility for decisions or actions taken by users of these data.</p>
       </div>
 
       <div style={{margin: '30px 10%', display:'flex', justifyContent:'center'}}>
