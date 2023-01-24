@@ -13,6 +13,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { Bar, PolarArea } from "react-chartjs-2";
 import CSVimg from '../components/csv.png'
 import "chart.js/auto";
+import Cookies from 'js-cookie';
 
 import {
   ResponsiveContainer,
@@ -135,6 +136,14 @@ const Details = () => {
 
   useEffect(() => {
     getDailyData()
+    const token = Cookies.get('sessionToken');
+    // console.log(token)
+    // if(!token) {
+    //   navigate("/login");
+    // }
+    // else {
+    //   navigate("/details");
+    // }
   }, [])
 
   const getDailyData = () => {

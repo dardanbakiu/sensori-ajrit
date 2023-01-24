@@ -7,6 +7,7 @@ import axios from "../axiosinstance";
 import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import './home.scss'
+import DatePicker from 'react-date-picker';
   
 const Home = () => {
   const [detailedAQI, setDetailedAQI] = useState({})
@@ -15,6 +16,8 @@ const Home = () => {
   const [daily, setDaily] = useState([]);
   const [qualityInWord, setQualityInWord] = useState('Moderate')
   const [qualityColor, setQualityColor] = useState('#f9d26a')
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
 
   function translateDate(dateString) {
     var dateArray = dateString.split(":");
@@ -38,10 +41,27 @@ const Home = () => {
     return total / count;
   }
 
+  function findEarliestAndLatestObject(arr) {
+    let earliest = arr[0];
+    let latest = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (new Date(arr[i].day) < new Date(earliest.day)) {
+        earliest = arr[i];
+      }
+      if (new Date(arr[i].day) > new Date(latest.day)) {
+        latest = arr[i];
+      }
+    }
+    return {earliest: earliest, latest: latest};
+  }
+
   const getChartData = () => {
     axios.get("/chartDailyDate")
     .then(function (response) {
-      // console.log(response.data);
+      console.log('te dhenatttt : ', response.data)
+      console.log('earliest and oldest : ', findEarliestAndLatestObject(response.data))
+      let rawData = response.data;
+
       setChartData(response.data);
     })
     .catch(function (error) {
@@ -73,10 +93,15 @@ const Home = () => {
       obj.year = parseInt(averageAttribute(response.data.slice(0,365), 'aqi'));
 
       setDetailedAQI(obj)
-      setDaily(response.data)
+      const firstAndLastDay = findEarliestAndLatestObject(response.data);
+      console.log('first last: ', firstAndLastDay);
+      const earliest = findEarliestAndLatestObject(response.data).earliest.day;
+      const oldest = findEarliestAndLatestObject(response.data).latest.day;
 
-      console.log('daily data : ')
-      console.log(response.data)
+      setStartDate(earliest)
+      setEndDate(oldest)
+
+      setDaily(response.data)
     })
     .catch(function (error) {
       console.log(error);
@@ -235,6 +260,10 @@ const Home = () => {
       </div>
       
       <div style={{margin: '30px 10%'}}>
+        <div style={{display: 'flex', justifyContent:'space-evenly', width:'50%'}}>
+          <div>Dita Startuese: <DatePicker onChange={setStartDate} value={startDate} /></div>
+          <div>Dita Perfundimtare: <DatePicker onChange={setEndDate} value={endDate} /></div>
+        </div>
         <LineChart data={chartData} />
         <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>Mohim përgjegjësie: Asnjë premtim, garanci ose garanci nuk ofrohet në lidhje me të dhënat e shfaqura në këtë faqe interneti. Është përgjegjësi e përdoruesve të këtyre të dhënave të verifikojnë saktësinë e të dhënave dhe operatorët e kësaj faqeje nuk marrin asnjë përgjegjësi për vendimet ose veprimet e ndërmarra nga përdoruesit e këtyre të dhënave.</p>
       </div>

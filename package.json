@@ -30,6 +30,7 @@
     "nodemon": "^2.0.20",
     "react-chartkick": "^0.5.3",
     "react-containers": "^16.0.5",
+    "react-date-picker": "^9.2.0",
     "react-router-dom": "^6.5.0",
     "sass": "^1.57.1"
   }
