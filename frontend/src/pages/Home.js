@@ -15,6 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const Home = () => {
   const [detailedAQI, setDetailedAQI] = useState({})
   const [chartData, setChartData] = useState([{}])
+  const [allChartData, setAllChartData] = useState([{}])
   const [currentQuality, setCurrentQuality] = useState(72);
   const [daily, setDaily] = useState([]);
   const [qualityInWord, setQualityInWord] = useState('Moderate')
@@ -79,6 +80,7 @@ const Home = () => {
       let rawData = response.data;
 
       setChartData(response.data);
+      setAllChartData(response.data);
     })
     .catch(function (error) {
       console.log(error);
@@ -124,22 +126,6 @@ const Home = () => {
     .catch(function (error) {
       console.log(error);
     });
-  }
-
-  function filterByDates(start_date, end_date, arr) {
-    let start = new Date(start_date);
-    let end = new Date(end_date);
-    console.log('before changes : ', [...arr])
-    arr.forEach(object => {
-        Object.keys(object.data).forEach(key => {
-            let itemDate = new Date(key);
-            if (!(itemDate >= start && itemDate <= end)) {
-                delete object.data[key];
-            }
-        });
-    });
-
-    return arr;
   }
 
   useEffect(() => {
@@ -287,10 +273,32 @@ const Home = () => {
           <div>Dita Startuese: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> </div>
           <div>Dita Perfundimtare: <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} /></div>
           <button style={{width: '80px', height:'30px', alignSelf:'end'}} onClick={() => {
-            const startingDate = translateLongDateToShort(startDate)
-            const endingDate = translateLongDateToShort(endDate)
-            
-            console.log(filterByDates(startingDate, endingDate, chartData))
+            const start_date = translateLongDateToShort(startDate)
+            const end_date = translateLongDateToShort(endDate)
+          
+            let arr = [...allChartData]
+            console.log('qetu e kena nisjen krejt : ', arr);
+            let start = new Date(start_date);
+            let end = new Date(end_date);
+
+            arr.forEach(object => {
+                Object.keys(object.data).forEach(key => {
+                    let itemDate = new Date(key);
+                    if (!(itemDate >= start && itemDate <= end)) {
+                        delete object.data[key];
+                    }
+                });
+            });
+
+            axios.get("/chartDailyDate")
+            .then(function (response) { 
+              setAllChartData(response.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+            setChartData(arr)
           }}> Filtro </button>
         </div>
         <LineChart data={chartData} />
