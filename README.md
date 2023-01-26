@@ -10,3 +10,9 @@
 ## Kredencialet per Login
     email: dardan@gmail.com
     password: dardan
+
+# Anetaret e Grupit 
+  Dardan Bakiu
+  Bajram Sherifi
+  Qendresa Hoxha
+  Enkela Osmani
