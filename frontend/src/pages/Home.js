@@ -7,7 +7,10 @@ import axios from "../axiosinstance";
 import 'chartkick/chart.js'
 import {getQualityColor} from '../helper'
 import './home.scss'
-import DatePicker from 'react-date-picker';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
   
 const Home = () => {
   const [detailedAQI, setDetailedAQI] = useState({})
@@ -18,6 +21,21 @@ const Home = () => {
   const [qualityColor, setQualityColor] = useState('#f9d26a')
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
+  function translateLongDateToShort(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let monthString = month.toString();
+    let dayString = day.toString();
+    if (month < 10) {
+        monthString = "0" + monthString;
+    }
+    if (day < 10) {
+        dayString = "0" + dayString;
+    }
+    return year + "-" + monthString + "-" + dayString;
+}
 
   function translateDate(dateString) {
     var dateArray = dateString.split(":");
@@ -57,9 +75,7 @@ const Home = () => {
 
   const getChartData = () => {
     axios.get("/chartDailyDate")
-    .then(function (response) {
-      console.log('te dhenatttt : ', response.data)
-      console.log('earliest and oldest : ', findEarliestAndLatestObject(response.data))
+    .then(function (response) { 
       let rawData = response.data;
 
       setChartData(response.data);
@@ -89,8 +105,8 @@ const Home = () => {
       const earliest = findEarliestAndLatestObject(response.data).earliest.day;
       const oldest = findEarliestAndLatestObject(response.data).latest.day;
 
-      setStartDate(earliest)
-      setEndDate(oldest)
+      setStartDate(new Date(earliest))
+      setEndDate(new Date(oldest))
 
       setDaily(response.data)
     })
@@ -110,9 +126,10 @@ const Home = () => {
     });
   }
 
-  function filterByDates(start_date = startDate, end_date=endDate, arr=chartData) {
+  function filterByDates(start_date, end_date, arr) {
     let start = new Date(start_date);
     let end = new Date(end_date);
+    console.log('before changes : ', [...arr])
     arr.forEach(object => {
         Object.keys(object.data).forEach(key => {
             let itemDate = new Date(key);
@@ -122,7 +139,7 @@ const Home = () => {
         });
     });
 
-    setChartData(arr)
+    return arr;
   }
 
   useEffect(() => {
@@ -266,13 +283,16 @@ const Home = () => {
       </div>
       
       <div style={{margin: '30px 10%'}}>
-        {/* <div style={{display: 'flex', justifyContent:'space-evenly', width:'40%'}}>
-          <div>Dita Startuese: <DatePicker onChange={setStartDate} value={startDate} /></div>
-          <div>Dita Perfundimtare: <DatePicker onChange={setEndDate} value={endDate} /></div>
+        <div style={{display: 'flex', justifyContent:'space-evenly', width:'40%'}}>
+          <div>Dita Startuese: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> </div>
+          <div>Dita Perfundimtare: <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} /></div>
           <button style={{width: '80px', height:'30px', alignSelf:'end'}} onClick={() => {
-            filterByDates();  
+            const startingDate = translateLongDateToShort(startDate)
+            const endingDate = translateLongDateToShort(endDate)
+            
+            console.log(filterByDates(startingDate, endingDate, chartData))
           }}> Filtro </button>
-        </div> */}
+        </div>
         <LineChart data={chartData} />
         <p style={{color:'red', borderRadius:'10px',border:'1px solid red', padding: '5px 10px', fontSize:'14px', margin:'10px 0'}}>Mohim përgjegjësie: Asnjë premtim, garanci ose garanci nuk ofrohet në lidhje me të dhënat e shfaqura në këtë faqe interneti. Është përgjegjësi e përdoruesve të këtyre të dhënave të verifikojnë saktësinë e të dhënave dhe operatorët e kësaj faqeje nuk marrin asnjë përgjegjësi për vendimet ose veprimet e ndërmarra nga përdoruesit e këtyre të dhënave.</p>
       </div>
