@@ -71,6 +71,8 @@ const Home = () => {
         <br/>
       </div>
 
+
+      <p>Per te hapur nje llogari kontaktoni ne fiek@uni-pr.edu</p>
     </div>
   </div>
   );
