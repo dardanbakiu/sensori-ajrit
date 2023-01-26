@@ -12,7 +12,7 @@
     password: dardan
 
 # Anetaret e Grupit 
-  Dardan Bakiu
-  Bajram Sherifi
-  Qendresa Hoxha
-  Enkela Osmani
+    Dardan Bakiu
+    Bajram Sherifi
+    Qendresa Hoxha
+    Enkela Osmani
