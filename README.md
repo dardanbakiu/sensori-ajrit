@@ -1,6 +1,6 @@
 # sensori-ajrit
 
-## Konfigurimi
+## Startimi i projektit
 * hapeni nje console
  ```shell
     yarn install && cd frontend && yarn install
