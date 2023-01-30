@@ -1,8 +1,13 @@
 # sensori-ajrit
 
 ## Konfigurimi
+* hapeni nje console
  ```shell
     yarn install && cd frontend && yarn install
+```
+
+*hapeni nje console te re
+ ```shell
     yarn start 
 ```
     http://localhost:3000/
