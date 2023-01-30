@@ -6,7 +6,7 @@
     yarn install && cd frontend && yarn install
 ```
 
-*hapeni nje console te re
+* hapeni nje console te re
  ```shell
     yarn start 
 ```
