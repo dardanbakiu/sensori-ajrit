@@ -1,12 +1,14 @@
 # sensori-ajrit
 
 ## Startimi i projektit
-* hapeni nje console
+* instalo "node js" https://nodejs.org/en/download/
+
+* hapeni nje console qe ndodhet ne root directory te projektit dhe ekzekutoni komanden : 
  ```shell
     yarn install && cd frontend && yarn install
 ```
 
-* hapeni nje console te re
+* hapeni nje console te re dhe ekzekutoni komanden ne vijim qe te startohet projekti : 
  ```shell
     yarn start 
 ```
