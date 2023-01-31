@@ -5,7 +5,7 @@
 
 * hapeni nje console qe ndodhet ne root directory te projektit dhe ekzekutoni komanden : 
  ```shell
-    yarn install && cd frontend && yarn install && cd ..
+    yarn install; cd frontend; yarn install; cd ..
 ```
 
 * hapeni nje console te re dhe ekzekutoni komanden ne vijim qe te startohet projekti : 
