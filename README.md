@@ -1,23 +1,23 @@
 # sensori-ajrit
 
 ## Startimi i projektit
-* instalo "node js" https://nodejs.org/en/download/
+1. instalo "node js" <a href="https://nodejs.org/en/download/"> Node Js Download</a>
 
-* Fillimisht duhet te instalojme "yarn" globalisht ne CMD (command line interface) permes komandes : 
+2. Fillimisht duhet te instalojme "yarn" globalisht ne CMD (command line interface) permes komandes : 
   ```shell
     npm install --global yarn
   ```
 
-* hapeni nje console qe ndodhet ne root directory te projektit dhe ekzekutoni komanden : 
+3. hapeni nje console qe ndodhet ne root directory te projektit dhe ekzekutoni komanden : 
   ```shell
     yarn install; cd frontend; yarn install; cd ..
   ```
 
-* hapeni nje console te re dhe ekzekutoni komanden ne vijim qe te startohet projekti : 
+4. hapeni nje console te re dhe ekzekutoni komanden ne vijim qe te startohet projekti : 
  ```shell
     yarn start 
 ```
-* Hapeni faqen ne kete domene : 
+5. Hapeni faqen ne kete domene : 
     http://localhost:3000/
 
 ## Kredencialet per Login
