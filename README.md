@@ -13,7 +13,7 @@
     yarn install; cd frontend; yarn install; cd ..
   ```
 
-4. hapeni nje console te re dhe ekzekutoni komanden ne vijim qe te startohet projekti : 
+4. Pastaj ne root directory te projektit ekzekutoni komanden ne vijim qe te startohet projekti : 
  ```shell
     yarn start 
 ```
