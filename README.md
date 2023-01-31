@@ -1,7 +1,7 @@
 # Vizualizimi i te dhenave - Sensori i ajrit
 
 ## Startimi i projektit
-1. instalo "node js", <a href="https://nodejs.org/en/download/"> https://nodejs.org/en/download/ </a>
+1. instalo "node js", <a target="blank" href="https://nodejs.org/en/download/"> https://nodejs.org/en/download/ </a>
 
 2. Fillimisht duhet te instalojme "yarn" globalisht ne CMD (command line interface) permes komandes : 
   ```shell
