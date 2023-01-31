@@ -1,4 +1,4 @@
-# sensori-ajrit
+# Vizualizimi i te dhenave - Sensori i ajrit
 
 ## Startimi i projektit
 1. instalo "node js", <a href="https://nodejs.org/en/download/"> Kliko ketu per shkarkimin e Node JS (https://nodejs.org/en/download/)</a>
