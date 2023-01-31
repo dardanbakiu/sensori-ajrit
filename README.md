@@ -1,7 +1,7 @@
 # sensori-ajrit
 
 ## Startimi i projektit
-1. instalo "node js" <a href="https://nodejs.org/en/download/"> Node Js Download</a>
+1. instalo "node js", <a href="https://nodejs.org/en/download/"> Kliko ketu per shkarkimin e Node JS (https://nodejs.org/en/download/)</a>
 
 2. Fillimisht duhet te instalojme "yarn" globalisht ne CMD (command line interface) permes komandes : 
   ```shell
