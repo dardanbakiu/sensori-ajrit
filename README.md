@@ -5,13 +5,14 @@
 
 * hapeni nje console qe ndodhet ne root directory te projektit dhe ekzekutoni komanden : 
  ```shell
-    yarn install && cd frontend && yarn install
+    yarn install && cd frontend && yarn install && cd ..
 ```
 
 * hapeni nje console te re dhe ekzekutoni komanden ne vijim qe te startohet projekti : 
  ```shell
     yarn start 
 ```
+* Hapeni faqen ne kete domene : 
     http://localhost:3000/
 
 ## Kredencialet per Login
