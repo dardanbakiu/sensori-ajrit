@@ -3,6 +3,11 @@
 ## Startimi i projektit
 * instalo "node js" https://nodejs.org/en/download/
 
+* Fillimisht duhet te instalojme "yarn" globalisht ne CMD (command line interface) permes komandes : 
+   ```shell
+    npm install --global yarn
+```
+
 * hapeni nje console qe ndodhet ne root directory te projektit dhe ekzekutoni komanden : 
  ```shell
     yarn install; cd frontend; yarn install; cd ..
